@@ -1503,66 +1503,62 @@ Mina    Art
 
 ---
 
-### ۲. آموزش جامع Regular Expressions (عبارات باقاعده)
+### 2. Comprehensive Regular Expressions Training
 
-رگولار اکسپرشن (یا Regex) یک "زبان" برای توصیف الگوهای متنی است. ما به جای جستجوی یک کلمه ثابت (مثل "Ali")، یک الگو تعریف می‌کنیم (مثل "هر کلمه‌ای که با A شروع شود و ۳ حرفی باشد").
+A regular expression (or Regex) is a “language” for describing text patterns. Instead of searching for a fixed word (like "Ali"), you define a pattern (like “any word that starts with A and has 3 letters”).
 
-این مبحث به ۳ دسته تقسیم می‌شود:
-1.  **لنگرها (Anchors):** موقعیت را تعیین می‌کنند.
-2.  **کلاس‌های کاراکتر (Character Sets):** چه حروفی مجاز هستند.
-3.  **تکرارگرها (Quantifiers):** چند بار تکرار شود.
+This topic is divided into 3 categories:
+1. **Anchors:** Specify positions.
+2. **Character sets:** Specify which characters are allowed.
+3. **Quantifiers:** Specify how many times something repeats.
 
-#### الف) لنگرها (Anchors) - "کجای خط؟"
-*   **`^` (Carrot):**<br>
-نشان‌دهنده **ابتدا**ی خط.
-    *   الگو: `^Error` $\leftarrow$ فقط خطوطی که با کلمه Error شروع می‌شوند.
-*   **`$` (Dollar):**<br>
-نشان‌دهنده **انتها**ی خط.
-    *   الگو: `OK$` $\leftarrow$ فقط خطوطی که با کلمه OK تمام می‌شوند.
-    *   الگو: `^$` $\leftarrow$ خطوط کاملاً خالی (شروع و پایان به هم چسبیده‌اند).
+#### A) Anchors — “Where in the line?”
+* **`^` (Carrot):**  
+Indicates the **beginning** of a line.  
+  * Pattern: `^Error` ← only lines that begin with the word Error.
+* **`$` (Dollar):**  
+Indicates the **end** of a line.  
+  * Pattern: `OK$` ← only lines that end with the word OK.  
+  * Pattern: `^$` ← completely empty lines (start and end are adjacent).
 
-#### ب) کاراکترهای خاص و مجموعه‌ها
-*   **`.` (نقطه):** نماینده **هر** کاراکتری (به جز خط جدید).
-    *   الگو: `b.g` $\leftarrow$ کلماتی مثل big, bag, bog, b@g را پیدا می‌کند.
-*   **`[...]` (براکت):** مجموعه‌ای از کاراکترهای مجاز برای **یک** جایگاه.
-    *   الگو: `b[ae]g` $\leftarrow$ فقط bag و beg را پیدا می‌کند (big را پیدا نمی‌کند).
-*   **`[ - ]` (بازه):** تعریف محدوده.
-    *   `[a-z]`: تمام حروف کوچک.
-    *   `[0-9]`: تمام اعداد.
-    *   `[a-zA-Z0-9]`: تمام حروف و اعداد.
-*   **`[^...]` (نقیض):** هر چیزی **به جز** داخل براکت.
-    *   الگو: `[^0-9]` $\leftarrow$ هر کاراکتری که عدد **نباشد**.
+#### B) Special characters and sets
+* **`.` (dot):** Represents **any** character (except newline).  
+  * Pattern: `b.g` ← matches words like big, bag, bog, b@g.
+* **`[...]` (brackets):** A set of allowed characters for **one** position.  
+  * Pattern: `b[ae]g` ← matches only bag and beg (does not match big).
+* **`[ - ]` (range):** Defines a range.  
+  * `[a-z]`: all lowercase letters.  
+  * `[0-9]`: all digits.  
+  * `[a-zA-Z0-9]`: all letters and digits.
+* **`[^...]` (negation):** Anything **except** what’s inside the brackets.  
+  * Pattern: `[^0-9]` ← any character that is **not** a digit.
 
-#### ج) تکرارگرها (Quantifiers) - "چند تا؟"
-*نکته مهم:* در `grep` معمولی، برخی از این‌ها نیاز به `\` (Backslash) دارند، اما در `egrep` (که در ادامه می‌گوییم) مستقیم کار می‌کنند.
+#### C) Quantifiers — “How many times?”
+*Important:* In regular `grep`, some of these require `\` (backslash), but in `egrep` (explained later) they work directly.
 
-*   **`*` (ستاره):** کاراکتر قبلی **صفر بار یا بیشتر** تکرار شود. (دقت کنید! با `*` در دستور `ls` فرق دارد).
-    *   الگو: `ab*c` $\leftarrow$ موارد ac (بدون b)، abc, abbc, abbbc را پیدا می‌کند.
-*   **`?` (سوال):** کاراکتر قبلی **صفر یا یک بار** تکرار شود (اختیاری بودن).
-    *   الگو: `colou?r` $\leftarrow$ هم color (آمریکایی) و هم colour (بریتیش) را پیدا می‌کند.
-*   **`+` (جمع):** کاراکتر قبلی **یک بار یا بیشتر** تکرار شود (حداقل یکی باید باشد).
-    *   الگو: `Go+gle` $\leftarrow$ باید حداقل یک o باشد (Google, Gooogle). کلمه Gogle پیدا نمی‌شود.
-
----
-
-### ۳. دستور `egrep` (Extended Grep) یا `grep -E`
-
-دستور `grep` معمولی برخی از نمادهای پیشرفته Regex (مثل `+`, `?`, `|`, `()`) را به عنوان کاراکتر معمولی می‌شناسد مگر اینکه قبلش `\` بگذارید.
-برای راحتی کار، از `egrep` (یا معادل استاندارد آن `grep -E`) استفاده می‌کنیم که **Extended Regex** را پشتیبانی می‌کند.
-
-**قابلیت‌های اضافه در `egrep`:**
-
-1.  **گروه‌بندی `(...)`:**
-    برای اعمال تکرار روی یک کلمه کامل یا محدود کردن دامنه انتخاب.
-    *   مثال: `(ha)+` $\leftarrow$ عبارت ha یک یا چند بار تکرار شود (haha, hahaha).
-
-2.  **عملگر "یا" `|` (Pipe):**
-    *   مثال: `cat|dog` $\leftarrow$ خطوطی که کلمه cat **یا** کلمه dog را دارند.
-    *   ترکیب با پرانتز: `gr(a|e)y` $\leftarrow$ پیدا کردن gray یا grey.
+* **`*` (asterisk):** Previous character repeats **zero or more** times. (Note! Different from `*` in the `ls` command.)  
+  * Pattern: `ab*c` ← matches ac, abc, abbc, abbbc.
+* **`?` (question mark):** Previous character repeats **zero or one** time (optional).  
+  * Pattern: `colou?r` ← matches both color (US) and colour (UK).
+* **`+` (plus):** Previous character repeats **one or more** times (must appear at least once).  
+  * Pattern: `Go+gle` ← must have at least one o (Google, Gooogle). Does not match Gogle.
 
 ---
 
-### مثال‌های عملی و پیچیده (Terminal Simulation)
+### 3. The `egrep` (Extended Grep) Command or `grep -E`
+
+Regular `grep` treats some advanced regex symbols (like `+`, `?`, `|`, `()`) as literal characters unless you add `\` before them.  
+For convenience, we use `egrep` (or its standard equivalent `grep -E`), which supports **Extended Regex**.
+
+**Additional capabilities in `egrep`:**
+
+1. **Grouping `(...)`:**  
+   Used to apply repetition to a whole word or to limit the selection scope.  
+   * Example: `(ha)+` ← the string “ha” repeated one or more times (haha, hahaha).
+
+2. **The OR operator `|`:**  
+   * Example: `cat|dog` ← lines containing either the word cat or the word dog.  
+   * Combined with parentheses: `gr(a|e)y` ← matches gray or grey.### مثال‌های عملی و پیچیده (Terminal Simulation)
 
 فرض کنید فایل `server_log.txt` داریم:
 ```text
@@ -1791,38 +1787,32 @@ user@linux-machine:~$ ls *.jpg | wc -l
 *نکته: برای استفاده از نمادهای پیشرفته مثل `+`, `?`, `|`, `()` در دستور `grep`، باید از `grep -E` یا `egrep` استفاده کنید.*
 
 #### الف) لنگرها (Anchors) - موقعیت را مشخص می‌کنند
-*   **`^` (Carrot):** ابتدای خط.
-    *   `grep "^Error" log.txt` $\leftarrow$ خط‌هایی که دقیقاً با کلمه Error شروع می‌شوند.
-*   **`$` (Dollar):** انتهای خط.
-    *   `grep "end$" log.txt` $\leftarrow$ خط‌هایی که دقیقاً با کلمه end تمام می‌شوند.
-*   **`^$`**: خطوط خالی (شروع و پایان بلافاصله پشت سر هم).
+* **`^` (Carrot):** Beginning of the line.  
+  * `grep "^Error" log.txt` ← lines that start exactly with the word Error.  
+* **`$` (Dollar):** End of the line.  
+  * `grep "end$" log.txt` ← lines that end exactly with the word end.*   **`^$`**: خطوط خالی (شروع و پایان بلافاصله پشت سر هم).
 
 #### ب) تطبیق کاراکتر
-*   **`.` (نقطه):** نماینده **هر** کاراکتری (فقط یکی).
-    *   `gr.y` $\leftarrow$ کلمات gray, grey, gr/y, gr2y را پیدا می‌کند.
-*   **`[...]` و `[^...]`:** مشابه Wildcard عمل می‌کند (محدوده کاراکتر).
-    *   `[c-f]` $\leftarrow$ حروف c, d, e, یا f.
-
+* **`.` (dot):** Represents **any** single character.  
+  * `gr.y` ← matches gray, grey, gr/y, gr2y.  
+* **`[...]` and `[^...]`:** Works similar to a wildcard (character range).  
+  * `[c-f]` ← letters c, d, e, or f.
 #### ج) تکرارگرها (Quantifiers) - روی کاراکتر **قبل از خود** اثر می‌گذارند
 *اینجا جایی است که با Wildcard متفاوت است!*
-
-*   **`*` (Star):** کاراکتر قبلی **۰ یا بیشتر** بار تکرار شود.
-    *   `colou*r` $\leftarrow$ کلمات color, colour, colouuur را پیدا می‌کند. (u می‌تواند نباشد یا زیاد باشد).
-*   **`?` (Question):** کاراکتر قبلی **۰ یا ۱** بار تکرار شود (اختیاری بودن).
-    *   `colou?r` $\leftarrow$ فقط color و colour.
-*   **`+` (Plus):** کاراکتر قبلی **۱ یا بیشتر** بار تکرار شود (حداقل یک بار باید باشد).
-    *   `go+gle` $\leftarrow$ کلمات gogle, google, gooogle (اما ggle را پیدا نمی‌کند).
-*   **`{n}`:** دقیقاً n بار تکرار.
-    *   `o{3}` $\leftarrow$ کلمه ooo.
-*   **`{n,m}`:** حداقل n و حداکثر m بار تکرار.
-
+* **`*` (Star):** The previous character repeats **0 or more** times.  
+  * `colou*r` ← matches color, colour, colouuur (u may be absent or repeated many times).  
+* **`?` (Question):** The previous character repeats **0 or 1** time (optional).  
+  * `colou?r` ← matches only color and colour.  
+* **`+` (Plus):** The previous character repeats **1 or more** times (must appear at least once).  
+  * `go+gle` ← matches gogle, google, gooogle (but does not match ggle).  
+* **`{n}`:** Exactly n repetitions.  
+  * `o{3}` ← the string ooo.  
+* **`{n,m}`:** At least n and at most m repetitions.
 #### د) گروه‌بندی و منطق
-*   **`|` (Pipe):** عملگر "یا" منطقی (OR).
-    *   `grep -E "Linux|Unix" file.txt` $\leftarrow$ خطوطی که کلمه Linux **یا** Unix دارند.
-*   **`()`:** گروه‌بندی برای اعمال تکرارگرها روی یک کلمه کامل.
-    *   `grep -E "(ha)+"` $\leftarrow$ کلمات haha, hahaha, hahahaha را پیدا می‌کند.
-
----
+* **`|` (Pipe):** Logical OR operator.  
+  * `grep -E "Linux|Unix" file.txt` ← lines that contain the word Linux **or** Unix.  
+* **`()`**: Grouping to apply quantifiers to an entire word.  
+  * `grep -E "(ha)+"` ← matches haha, hahaha, hahahaha.---
 
 ### جدول مقایسه سریع (برای رفع ابهام دانشجو)
 

@@ -1764,9 +1764,8 @@ user@linux-machine:~$ ls *.jpg | wc -l
 ## تفاوت حیاتی: Wildcards در برابر Regex
 
 قبل از بررسی لیست، باید بدانید کجا از کدام استفاده می‌شود:
-1.  **Wildcards (Shell Globbing):** توسط خودِ **Shell (ترمینال)** تفسیر می‌شود. فقط برای تطبیق **نام فایل‌ها و پوشه‌ها** استفاده می‌شود (در دستوراتی مثل `ls`, `rm`, `cp`).
-2.  **Regular Expressions (Regex):** توسط **برنامه‌ها** (مثل `grep`, `vi`, `sed`) تفسیر می‌شود. برای جستجو در **محتوای متنی** استفاده می‌شود.
-
+1. **Wildcards (Shell Globbing):** Interpreted by the **shell itself**. Used only for matching **filenames and directories** (in commands like `ls`, `rm`, `cp`).  
+2. **Regular Expressions (Regex):** Interpreted by **programs** (such as `grep`, `vi`, `sed`). Used for searching **text content**.
 ---
 
 ### ۱. کاراکترهای جایگزین (Wildcards / Globbing)

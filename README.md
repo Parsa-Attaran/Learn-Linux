@@ -21,10 +21,8 @@
 - [دستور kill](#دستور-kill)
 - [جستجو و فیلتر پیشرفته: grep، egrep و regex](#جستجو-و-فیلتر-پیشرفته-grep-egrep-و-regex)
 - [دستور history](#دستور-history-تاریخچه-فرمان‌ها)
-
-
-- [Redirection و Pipe](#دستورات-تغییر-مسیر-redirection-و-پایپ-pipe)
-- [Wildcards vs Regex](#تفاوت-حیاتی-wildcards-در-برابر-regex)
+- [دستورات Redirection و Pipe](#دستورات-تغییر-مسیر-redirection-و-پایپ-pipe)
+- [تفاوت های Wildcards vs Regex](#تفاوت-حیاتی-wildcards-در-برابر-regex)
 
 
 

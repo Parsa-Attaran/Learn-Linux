@@ -103,12 +103,17 @@ ls [OPTION]... [FILE]...
 ### توضیحات پارامترها و سوئیچ‌های مهم
 دستور `ls` به تنهایی فقط نام فایل‌ها را نشان می‌دهد، اما قدرت واقعی آن در سوئیچ‌هایش نهفته است:
 
-1.  **`-a` (All):** <br>
-  در لینوکس، فایل‌هایی که نامشان با نقطه (`.`) شروع شود، مخفی (Hidden) هستند (مانند فایل‌های پیکربندی مثل `.bashrc`). دستور `ls` عادی این‌ها را نشان نمی‌دهد. سوئیچ `-a` همه فایل‌ها، حتی مخفی‌ها را نمایش می‌دهد.
-3.  **`-l` (Long Listing Format):** <br>
-  این سوئیچ حیاتی‌ترین حالت نمایش برای مهندسین کامپیوتر است. به جای فقط نام فایل، جزئیات کاملی شامل مجوزها (Permissions)، تعداد لینک‌ها، مالک فایل (Owner)، گروه (Group)، حجم و تاریخ آخرین تغییر را نمایش می‌دهد.
-5.  **`-d` (Directory):** <br>
-  به صورت پیش‌فرض، اگر `ls` را روی یک دایرکتوری اجرا کنید، محتویات *داخل* آن را نشان می‌دهد. اگر بخواهید اطلاعات خودِ آن دایرکتوری (و نه محتوایش) را ببینید، باید از `-d` استفاده کنید (معمولاً در ترکیب با `-l` استفاده می‌شود: `-ld`).
+1- -a (All):
+
+In Linux, any file whose name begins with a dot (.) is considered hidden (such as configuration files like .bashrc). A normal ls command does not display them. The -a switch shows all files, including hidden ones.
+
+2- -l (Long Listing Format):
+
+This switch is the most essential display mode for computer engineers. Instead of showing only filenames, it provides full details including permissions, number of links, file owner, group, size, and the date of the last modification.
+
+3- -d (Directory):
+
+By default, when you run ls on a directory, it displays the contents of that directory. If you want to view information about the directory itself (not its contents), you must use -d (often combined with -l, like -ld)..
 
 ### مثال‌های عملی (Terminal Simulation)
 
@@ -216,7 +221,7 @@ mkdir [OPTION] DIRECTORY...
 
 ### توضیحات پارامترها
 *   **`-p` (Parents):** <br>
-این سوئیچ بسیار مهم است. اگر بخواهید یک مسیر تودرتو بسازید (مثلاً پوشه `c` داخل `b` داخل `a`) و پوشه‌های والد (`a` و `b`) وجود نداشته باشند، `mkdir` عادی خطا می‌دهد. اما `mkdir -p` پوشه‌های والدِ غایب را هم می‌سازد.
+This switch is very important. If you want to create a nested path (for example, folder `c` inside `b` inside `a`) and the parent folders (`a` and `b`) do not exist, a normal `mkdir` will produce an error. But `mkdir -p` also creates the missing parent folders.
 
 ### مثال‌های عملی (Terminal Simulation)
 
@@ -328,8 +333,7 @@ man [OPTION] [COMMAND_NAME]
 *   **b:** <br>
 برگشتن به صفحه قبل (Back).
 *   **`/keyword`:** <br>
-جستجو برای کلمه `keyword` (با زدن `n` به نتیجه بعدی می‌روید).
-*   **q:** <br>
+Search for the word `keyword` (press `n` to go to the next match).*   **q:** <br>
 خروج از راهنما (Quit) .
 
 ### مثال‌های عملی (Terminal Simulation)
@@ -393,9 +397,9 @@ cp [OPTION]... SOURCE... DIRECTORY
 *   حالت دوم: کپی چندین فایل به داخل یک دایرکتوری.
 
 ### توضیحات پارامترها و سوئیچ‌های مهم
-*   **`-r` یا `-R` (Recursive):** این مهم‌ترین سوئیچ برای کپی کردن **پوشه‌ها (دایرکتوری‌ها)** است. به صورت پیش‌فرض `cp` نمی‌تواند یک پوشه را کپی کند چون پوشه حاوی فایل‌های دیگر است. این سوئیچ به دستور می‌گوید: "خودِ پوشه و تمام محتویات داخلش را به صورت تودرتو کپی کن".
-*   **`-i` (Interactive):** قبل از اینکه فایلی در مقصد را بازنویسی (Overwrite) کند، از شما تایید می‌گیرد. (بسیار مفید برای جلوگیری از پاک شدن ناخواسته فایل‌های هم‌نام).
-*   **`-v` (Verbose):** عملیات کپی را با جزئیات نشان می‌دهد (می‌گوید چه فایلی کجا کپی شد).
+* **`-r` or `-R` (Recursive):** This is the most important switch for copying **folders (directories)**. By default, `cp` cannot copy a folder because a folder contains other files. This switch tells the command: "Copy the folder itself and all its contents recursively."
+* **`-i` (Interactive):** Before overwriting a file in the destination, it asks for your confirmation. (Very useful for preventing accidental overwriting of files with the same name.)
+* **`-v` (Verbose):** Shows the copy operation in detail (it reports which file was copied where).
 
 ### مثال‌های عملی (Terminal Simulation)
 
@@ -454,14 +458,14 @@ mv [OPTION]... SOURCE... DIRECTORY
 ```
 
 ### توضیحات پارامترها و سوئیچ‌های مهم
-*   **`-i` (Interactive):** <br>
-حیاتی‌ترین سوئیچ ایمنی. اگر در مقصد فایلی هم‌نام وجود داشته باشد، `mv` به صورت پیش‌فرض آن را بی‌صدا نابود (Overwrite) می‌کند. با `-i` سیستم قبل از جایگزینی از شما اجازه می‌گیرد.
-*   **`-u` (Update):**  <br>
-فقط در صورتی فایل را جابجا می‌کند که فایل مبدا جدیدتر از فایل موجود در مقصد باشد (یا فایل در مقصد نباشد).
-*   **`-v` (Verbose):**  <br>
-گزارش کار را چاپ می‌کند (چه چیزی به کجا رفت).
+* **`-i` (Interactive):**  
+The most critical safety switch. If a file with the same name exists in the destination, `mv` will silently overwrite it by default. With `-i`, the system asks for confirmation before replacing it.
 
-### مثال‌های عملی (Terminal Simulation)
+* **`-u` (Update):**  
+Moves the file only if the source file is newer than the existing file in the destination (or if the file does not exist in the destination).
+
+* **`-v` (Verbose):**  
+Prints the operation report (what went where).### مثال‌های عملی (Terminal Simulation)
 
 **مثال ۱: تغییر نام فایل (Rename)**
 در لینوکس دستور جداگانه‌ای برای Rename نداریم. برای تغییر نام `old.txt` به `new.txt` از `mv` استفاده می‌کنیم.
@@ -511,15 +515,17 @@ rm [OPTION]... FILE...
 ```
 
 ### توضیحات پارامترها و سوئیچ‌های مهم
-*   **`-r` یا `-R` (Recursive):** <br>
-برای حذف **دایرکتوری‌ها** و تمام محتویات داخلشان الزامی است. بدون این سوئیچ، `rm` فقط می‌تواند فایل‌ها را پاک کند.
-*   **`-f` (Force):**  <br>
-حالت "زورکی" یا اجباری. بدون هیچ سوالی فایل‌ها را پاک می‌کند، حتی اگر فایل‌ها محافظت‌شده باشند یا وجود نداشته باشند (خطا نمی‌دهد).
-*   **`-i` (Interactive):**  <br>
-"فرشته نجات". برای هر فایلی که می‌خواهد پاک شود، از شما تایید می‌گیرد.
-*   **`-v` (Verbose):**  <br>
-نمایش می‌دهد چه فایل‌هایی در حال پاک شدن هستند.
+* **`-r` or `-R` (Recursive):**  
+Required for deleting **directories** and all their contents. Without this switch, `rm` can only delete files.
 
+* **`-f` (Force):**  
+The "forced" mode. Deletes files without asking any questions, even if they are protected or do not exist (it does not produce an error).
+
+* **`-i` (Interactive):**  
+The "guardian angel". Asks for confirmation before deleting each file.
+
+* **`-v` (Verbose):**  
+Shows which files are being deleted.
 ### مثال‌های عملی (Terminal Simulation)
 
 **مثال ۱: حذف ساده فایل**
@@ -577,10 +583,11 @@ cat [OPTION]... [FILE]...
 ```
 
 #### سوئیچ‌های مهم
-*   **`-n` (Number):**<br>
-شماره خطوط را در کنار هر خط چاپ می‌کند. (بسیار مفید برای برنامه‌نویسان جهت دیباگ کردن کد).
-*   **`-b`:**  <br>
-شبیه `-n` است اما خطوط خالی را شماره‌گذاری نمی‌کند.
+* **`-n` (Number):**  
+Prints line numbers beside each line. (Very useful for programmers when debugging code.)
+
+* **`-b`:**  
+Similar to `-n` but does not number empty lines..
 
 #### مثال‌های عملی (Terminal Simulation)
 
@@ -628,21 +635,26 @@ less filename
 #### کلیدهای کنترلی (Navigation)
 وقتی وارد محیط `less` می‌شوید، خط فرمان ناپدید می‌شود. برای کار در این محیط باید کلیدهای زیر را بشناسید (مشابه دستور `man`):
 
-*   **`Space` یا `Page Down`:** <br>
-رفتن به صفحه بعدی.
-*   **`b` یا `Page Up`:** <br>
-برگشتن به صفحه قبلی.
-*   **`Enter` یا `Arrow Down`:**<br>
-رفتن فقط یک خط به پایین.
-*   **`g` (کوچک):**<br>
-رفتن به ابتدای فایل.
-*   **`G` (بزرگ):**<br>
-رفتن به انتهای فایل (بسیار کاربردی برای چک کردن آخرین خطاهای لاگ).
-*   **`/word`:**<br>
-جستجو به دنبال کلمه "word". (با `n` به نتیجه بعدی بروید).
-*   **`q`:** <br>
-خروج از محیط `less` و بازگشت به ترمینال.
+* **`Space` or `Page Down`:**  
+Go to the next page.
 
+* **`b` or `Page Up`:**  
+Go back to the previous page.
+
+* **`Enter` or `Arrow Down`:**  
+Move down by one line.
+
+* **`g` (lowercase):**  
+Go to the beginning of the file.
+
+* **`G` (uppercase):**  
+Go to the end of the file (very useful for checking the latest log errors).
+
+* **`/word`:**  
+Search for the word "word". (Use `n` to go to the next match.)
+
+* **`q`:**  
+Exit the `less` environment and return to the terminal.
 #### مثال‌های عملی (Terminal Simulation)
 
 **مثال ۱: باز کردن یک فایل لاگ طولانی**
@@ -652,12 +664,11 @@ user@linux-machine:~$ less /var/log/syslog
 *(در این حالت ترمینال پاک می‌شود و محتویات فایل نمایش داده می‌شود. کاربر با کلیدهای جهت‌نما متن را می‌خواند و سپس `q` را می‌زند).*
 
 ### تفاوت کلیدی برای مهندسین کامپیوتر
-*   **`cat`:**<br>
-کل فایل را می‌خواند و در RAM بارگذاری می‌کند و در خروجی می‌ریزد. برای فایل‌های متنی کوچک عالی است.
-*   **`less`:**<br>
-فایل را تکه به تکه (Buffer) می‌خواند. اگر بخواهید یک فایل ۵۰ گیگابایتی را باز کنید، `cat` ممکن است سیستم را فریز کند، اما `less` بلافاصله آن را باز می‌کند چون فقط صفحه اول را بارگذاری می‌کند.
+* **`cat`:**  
+Reads the entire file, loads it into RAM, and outputs it. Great for small text files.
 
----
+* **`less`:**  
+Reads the file in chunks (buffered). If you want to open a 50‑GB file, `cat` may freeze the system, but `less` opens it immediately because it only loads the first page.---
 
 ## دستور `chmod` (Change Mode)
 
@@ -687,51 +698,51 @@ user@linux-machine:~$ less /var/log/syslog
 ما به دو روش می‌توانیم مجوزها را تغییر دهیم: **روش نمادین (Symbolic)** و **روش عددی (Octal/Numeric)**.
 
 #### روش ۱: حالت نمادین (Symbolic Mode)
-فرمول: `chmod [Who][Operator][Permission] filename`
+Formula: `chmod [Who][Operator][Permission] filename`
 
-*   **Who (چه کسی):** 
-`u` (User), `g` (Group), `o` (Others), `a` (All - همه).
-*   **Operator (عملگر):** <br>
-`+` (اضافه کردن)، `-` (کم کردن)، `=` (تنظیم دقیق).
-*   **Permission (مجوز):**
+* **Who:**  
+`u` (User), `g` (Group), `o` (Others), `a` (All).
+
+* **Operator:**  
+`+` (add), `-` (remove), `=` (set exactly).
+
+* **Permission:**  
 `r`, `w`, `x`.
 
-**مثال:**
+Example:
 ```bash
-chmod u+x script.py   # به مالک فایل اجازه اجرا بده
-chmod go-w file.txt   # اجازه نوشتن را از گروه و بقیه بگیر
-chmod a=r file.pdf    # همه فقط و فقط اجازه خواندن داشته باشند (بقیه مجوزها حذف می‌شود)
+chmod u+x script.py
+chmod go-w file.txt
+chmod a=r file.pdf
 ```
 
-#### روش ۲: حالت عددی (Octal Mode) - روش حرفه‌ای‌ها
-این روش بر مبنای سیستم اعداد باینری (دودویی) است و دانشجویان کامپیوتر باید به این روش مسلط باشند. هر مجوز یک ارزش عددی دارد:
+Method 2: Octal Mode
 
-*   **`r` (Read) = 4** (در باینری 100)
-*   **`w` (Write) = 2** (در باینری 010)
-*   **`x` (Execute) = 1** (در باینری 001)
-*   **`-` (No permission) = 0**
+This method is based on the binary system. Each permission has a numeric value:
 
-ما جمع این اعداد را برای هر دسته (User, Group, Others) محاسبه می‌کنیم.
+* `r` = 4
+* `w` = 2
+* `x` = 1
+* `-` = 0
 
-**مثال‌های رایج عددی:**
+We sum these values for User, Group, and Others.
 
-*   **`chmod 777` (خطرناک):**
-    *   User: 4+2+1 = 7 (rwx)
-    *   Group: 4+2+1 = 7 (rwx)
-    *   Others: 4+2+1 = 7 (rwx)
-    *   *نتیجه:* همه می‌توانند بخوانند، بنویسند و اجرا کنند. (در امنیت صفر است!)
+Common octal examples:
 
-*   **`chmod 755` (استاندارد اسکریپت‌ها و پوشه‌ها):**
-    *   User: 7 (rwx) -> مالک همه کار می‌کند.
-    *   Group: 4+0+1 = 5 (r-x) -> هم‌گروهی فقط می‌خواند و اجرا می‌کند.
-    *   Others: 5 (r-x) -> بقیه هم فقط می‌خوانند و اجرا می‌کنند.
+* **`chmod 777`:**  
+  User: 7 (rwx)  
+  Group: 7 (rwx)  
+  Others: 7 (rwx)
 
-*   **`chmod 644` (استاندارد فایل‌های متنی):**
-    *   User: 4+2 = 6 (rw-) -> مالک می‌خواند و می‌نویسد.
-    *   Group: 4 (r--) -> فقط می‌خواند.
-    *   Others: 4 (r--) -> فقط می‌خواند.
+* **`chmod 755`:**  
+  User: 7 (rwx)  
+  Group: 5 (r-x)  
+  Others: 5 (r-x)
 
-### مثال‌های عملی (Terminal Simulation)
+* **`chmod 644`:**  
+  User: 6 (rw-)  
+  Group: 4 (r--)  
+  Others: 4 (r--)### مثال‌های عملی (Terminal Simulation)
 
 **مثال ۱: تبدیل یک فایل متنی به یک برنامه اجرایی**
 شما یک اسکریپت پایتون نوشته‌اید اما لینوکس اجازه اجرای آن را نمی‌دهد.
@@ -815,8 +826,7 @@ tail [OPTION]... [FILE]...
 *   **`-n` (Number):** <br>
 تعیین تعداد خطوط آخر.
 *   **`-f` (Follow):** <br>
-این مهم‌ترین ویژگی `tail` است. با این سوئیچ، دستور تمام نمی‌شود؛ بلکه "منتظر" می‌ماند و هر خط جدیدی که به انتهای فایل اضافه شود را **به صورت زنده (Real-time)** در ترمینال نمایش می‌دهد.
-
+This is the most important feature of `tail`. With this switch, the command does not exit; instead, it *waits* and displays every new line added to the end of the file **in real time** in the terminal.
 #### مثال‌های عملی (Terminal Simulation)
 
 **مثال ۱: دیدن آخرین خطاهای ثبت شده**
@@ -861,17 +871,20 @@ sort [OPTION]... [FILE]...
 ```
 
 ### سوئیچ‌های مهم
-*   **`-n` (Numeric):**  <br>
-مرتب‌سازی بر اساس مقدار عددی. (بدون این سوئیچ، عدد `10` قبل از `2` می‌آید چون کاراکتر '1' قبل از '2' است!).
-*   **`-r` (Reverse):** <br>
-مرتب‌سازی را برعکس می‌کند (نزولی: Z به A یا ۹ به ۰).
-*   **`-R` (Random):** <br>
-خطوط را به صورت تصادفی بر می‌زند (Shuffle).
-*   **`-u` (Unique):** <br>
-پس از مرتب‌سازی، خطوط تکراری را حذف می‌کند (فقط یک نمونه از هر کدام نگه می‌دارد).
-*   **`-k` (Key):** <br>
-مشخص می‌کند بر اساس کدام ستون مرتب‌سازی انجام شود. (مثلاً `-k 2` یعنی بر اساس ستون دوم).
+* **`-n` (Numeric):**  
+Sort based on numeric value. (Without this switch, the number `10` comes before `2` because the character '1' comes before '2'.)
 
+* **`-r` (Reverse):**  
+Reverses the sort order (descending: Z to A or 9 to 0).
+
+* **`-R` (Random):**  
+Shuffles the lines randomly.
+
+* **`-u` (Unique):**  
+After sorting, removes duplicate lines (keeps only one instance of each).
+
+* **`-k` (Key):**  
+Specifies which column to sort by. (For example, `-k 2` means sort by the second column.)
 ### مثال‌های عملی (Terminal Simulation)
 
 فرض کنید فایلی به نام `scores.txt` با محتویات زیر داریم:
@@ -951,16 +964,17 @@ nl [OPTION]... [FILE]...
 ```
 
 ### سوئیچ‌های مهم
-*   **`-b` (Body numbering):**<br>
-تعیین سبک شماره‌گذاری بدنه متن.
-    *   `-b t`: (پیش‌فرض) فقط خطوطی که متن دارند (Non-empty) شماره می‌گیرند.
-    *   `-b a`: تمام خطوط (All)، حتی خطوط خالی شماره می‌گیرند (شبیه `cat -n`).
-    *   `-b n`: هیچ خطی شماره‌گذاری نمی‌شود.
-*   **`-s` (Separator):** <br>
-تعیین کاراکتر جداکننده بین شماره و متن خط. (پیش‌فرض یک Tab است).
-*   **`-w` (Width):** <br>
-تعیین عرض ستون شماره‌ها.
+* **`-b` (Body numbering):**  
+Specifies the body numbering style.  
+  * `-b t`: (default) Only non‑empty lines are numbered.  
+  * `-b a`: All lines, including empty ones, are numbered (similar to `cat -n`).  
+  * `-b n`: No lines are numbered.
 
+* **`-s` (Separator):**  
+Specifies the separator character between the number and the line text (default is a Tab).
+
+* **`-w` (Width):**  
+Specifies the width of the line‑number column.
 ### مثال‌های عملی (Terminal Simulation)
 
 فرض کنید فایلی به نام `program.py` با محتویات زیر (شامل خطوط خالی برای خوانایی) داریم:
@@ -1379,12 +1393,10 @@ user      2022  5.5  1.2 950200 45100 pts/1    Sl+  10:15   0:12 python3 heavy_s
 ```
 
 **تفسیر ستون‌های مهم:**
-*   **USER:** کاربری که برنامه را اجرا کرده (مثلاً `root` یا `www-data`).
-*   **PID:** شناسه عددی پروسه (اگر بخواهید برنامه‌ای را ببندید یا `kill` کنید، به این عدد نیاز دارید).
-*   **%CPU / %MEM:** درصد مصرف پردازنده و رم. (برای پیدا کردن برنامه‌هایی که سیستم را کند کرده‌اند عالی است).
-*   **COMMAND:** مسیر کامل دستور اجرایی.
-
-### ترکیب طلایی: `ps aux | grep`
+* **USER:** The user who executed the program (e.g., `root` or `www-data`).
+* **PID:** The numeric process ID (needed if you want to close or `kill` a program).
+* **%CPU / %MEM:** The percentage of CPU and memory usage (great for finding programs slowing down the system).
+* **COMMAND:** The full path of the executable command.### ترکیب طلایی: `ps aux | grep`
 خروجی `ps aux` معمولاً صدها خط است و پیدا کردن یک برنامه خاص در آن دشوار است. مهندسان همیشه آن را با `grep` ترکیب می‌کنند.
 
 **مثال:** پیدا کردن پروسه‌های مربوط به پایتون

@@ -19,10 +19,12 @@
 - [دستور tac (Reverse Cat)](#دستور-tac-reverse-cat)
 - [دستور ps (Process Status)](#دستور-ps-process-status)
 - [دستور kill](#دستور-kill)
-- [جستجو و فیلتر پیشرفته: grep، egrep و Regex](#جستجو-و-فیلتر-پیشرفته-grep-و-egrep-و-regex)
-- [دستور history](#دستور-history)
-- [Redirection و Pipe](#redirection-و-pipe)
-- [Wildcards vs Regex](#wildcards-vs-regex)
+- [جستجو و فیلتر پیشرفته: grep، egrep و regex](#جستجو-و-فیلتر-پیشرفته-grep-egrep-و-regex)
+- [دستور history](#دستور-history-تاریخچه-فرمان‌ها)
+
+
+- [Redirection و Pipe](#دستورات-تغییر-مسیر-redirection-و-پایپ-pipe)
+- [Wildcards vs Regex](#تفاوت-حیاتی-wildcards-در-برابر-regex)
 
 
 
@@ -1336,7 +1338,7 @@ user      2025  0.0  0.0   4500   800 pts/1    S+   10:16   0:00 grep python
 
 ---
 
-## دستور `kill` (خاتمه دادن به فرآیندها)
+## دستور `kill`
 
 ### مقدمه و هدف
 گاهی اوقات برنامه‌ها هنگ می‌کنند (Hang)، پاسخ نمی‌دهند، یا بیش از حد منابع سیستم را مصرف می‌کنند. دستور `kill` ابزاری برای ارسال "سیگنال" به پروسه‌ها است تا به آنها بگوید کارشان را تمام کنند.
@@ -1381,7 +1383,7 @@ user@linux-machine:~$ kill -9 5022
 
 ---
 
-## جستجو و فیلتر پیشرفته: `grep`، `egrep` و جادوی Regex
+## جستجو و فیلتر پیشرفته: `grep`، `egrep` و `regex`
 
 ### ۱. دستور `grep` (Global Regular Expression Print)
 

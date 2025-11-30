@@ -1,6 +1,4 @@
----
 ## راهنمای دسترسی سریع به آموزش دستورات لینوکس
-
 
 - [دستور pwd (Print Working Directory)](#دستور-pwd-print-working-directory)
 - [دستور ls (List)](#دستور-ls-list)
@@ -28,7 +26,7 @@
 - [دستورات Redirection و Pipe](#دستورات-تغییر-مسیر-redirection-و-پایپ-pipe)
 - [تفاوت های Wildcards vs Regex](#تفاوت-حیاتی-wildcards-در-برابر-regex)
 
----
+
 
 # فصل اول: آموزش دستورات خط فرمان (Terminal Commands)
 
